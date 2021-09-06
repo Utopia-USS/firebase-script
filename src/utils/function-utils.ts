@@ -1,6 +1,3 @@
-const arrayConstructor = [{}].constructor;
-const objectConstructor = ({}).constructor;
-
 export function isCollection(key: string): boolean {
     return key.endsWith("/")
 }
