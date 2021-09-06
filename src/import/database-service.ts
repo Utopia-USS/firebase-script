@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin'
 import DocumentReference = admin.firestore.DocumentReference
 import CollectionReference = admin.firestore.CollectionReference;
-import {buildInsertPath} from "../utils/function-utils";
+import {buildFieldPath} from "../utils/function-utils";
 
 export enum ReferenceType {
     collection, document
@@ -36,7 +36,7 @@ export class DatabaseService {
 
         const documentReference = <Reference> {
             type: ReferenceType.document,
-            path: buildInsertPath(reference.path, document),
+            path: buildFieldPath(reference.path, document),
             documentRef: reference.collectionRef!.doc(document)
         }
         this.references.push(documentReference)
@@ -52,7 +52,7 @@ export class DatabaseService {
 
         const collectionReference = <Reference> {
             type: ReferenceType.collection,
-            path:  buildInsertPath(reference.path, collection),
+            path:  buildFieldPath(reference.path, collection),
             collectionRef: reference.documentRef!.collection(collection)
         }
         this.references.push(collectionReference)

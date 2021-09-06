@@ -6,6 +6,6 @@ export function getPathOrElse(path: string, elseValue: string): string {
     return path.length == 0 ? elseValue : path
 }
 
-export function buildInsertPath(path: string, fieldName: string): string {
+export function buildFieldPath(path: string, fieldName: string): string {
     return path == fieldName ? path : path + "." + fieldName
 }

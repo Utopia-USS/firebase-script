@@ -1,5 +1,5 @@
 import {DatabaseService} from "./database-service";
-import {buildInsertPath, getPathOrElse, isCollection} from "../utils/function-utils";
+import {buildFieldPath, getPathOrElse, isCollection} from "../utils/function-utils";
 
 export class ImportService {
     readonly databaseService: DatabaseService;
@@ -25,7 +25,7 @@ export class ImportService {
         this.databaseService.createCollection(path, fieldName)
 
         for (const field in collection) {
-            await this.parseDocument(field, buildInsertPath(path, fieldName), collection)
+            await this.parseDocument(field, buildFieldPath(path, fieldName), collection)
         }
     }
 
@@ -37,9 +37,9 @@ export class ImportService {
 
         for (const field in document) {
             if(isCollection(field)) {
-                await this.parseCollection(field, buildInsertPath(path, fieldName), document)
+                await this.parseCollection(field, buildFieldPath(path, fieldName), document)
             } else {
-                await this.databaseService.setupDocument(buildInsertPath(path, fieldName), {[field]: document[field]})
+                await this.databaseService.setupDocument(buildFieldPath(path, fieldName), {[field]: document[field]})
             }
         }
     }
