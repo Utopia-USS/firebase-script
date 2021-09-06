@@ -1,7 +1,7 @@
 import * as admin from "firebase-admin";
 import {DatabaseService} from "./import/database-service";
 import {ImportService} from "./import/import-service";
-import { readFileSync } from 'fs';
+import {readFile} from "./utils/function-utils";
 
 export namespace ImportDataScript {
     export async function run() {
@@ -12,17 +12,12 @@ export namespace ImportDataScript {
             const credentialsPath = process.argv[2]
             const dataPath = process.argv[3]
 
-            const credentialsFile = readFileSync(credentialsPath, 'utf8')
-            const dataFile = readFileSync(dataPath, 'utf8')
-
-            const credentials = JSON.parse(credentialsFile)
-            const data = JSON.parse(dataFile)
-
             admin.initializeApp({
-                credential: admin.credential.cert(credentials),
+                credential: admin.credential.cert(readFile(credentialsPath)),
             })
+
             console.log("Start data import...")
-            await importService.importData(data)
+            await importService.importData(readFile(dataPath))
             console.log("Data successfully imported!")
         } else {
             console.log("Incorrect amount of arguments.")
