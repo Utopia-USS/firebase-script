@@ -1,5 +1,5 @@
 import {DatabaseService} from "./database-service";
-import {isCollection, objectToMap} from "../utils/json-utils";
+import {isCollection} from "../utils/json-utils";
 
 export class ImportService {
     readonly databaseService: DatabaseService;
@@ -8,9 +8,9 @@ export class ImportService {
         this.databaseService = databaseService
     }
 
-    async parseJson(json: any, fieldPath: string): Promise<void> {
+    async parseJson(json: any, fieldPath: string = ""): Promise<void> {
         for (const fieldName in json) {
-            if(isCollection(fieldName)) {
+            if (isCollection(fieldName)) {
                 await this.parseCollection(fieldName, fieldPath, json)
             } else {
                 await this.parseDocument(fieldName, fieldPath, json)
