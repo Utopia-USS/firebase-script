@@ -25,4 +25,4 @@ let importService = new ImportService(databaseService)
 const jsonData = "{\"config/\":  {\"default\": {\"bundlesVersions\": {\"translations_1\": 0},\"bundles/\": {\"translations_1\": {\"alkjlkj\": [0, 1, 2]}}}}, \"config2/\": {\"moje\": {\"xd\": [1,2]}}}"
 const json = JSON.parse(jsonData);
 
-importService.parseJson(json)
+importService.importData(json)

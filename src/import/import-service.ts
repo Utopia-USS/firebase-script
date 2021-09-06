@@ -8,7 +8,7 @@ export class ImportService {
         this.databaseService = databaseService
     }
 
-    async parseJson(json: any, fieldPath: string = ""): Promise<void> {
+    async importData(json: any, fieldPath: string = ""): Promise<void> {
         for (const fieldName in json) {
             if (isCollection(fieldName)) {
                 await this.parseCollection(fieldName, fieldPath, json)
