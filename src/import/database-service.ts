@@ -1,6 +1,7 @@
 import * as admin from 'firebase-admin'
 import DocumentReference = admin.firestore.DocumentReference
 import CollectionReference = admin.firestore.CollectionReference;
+import {buildInsertPath} from "../utils/function-utils";
 
 export enum ReferenceType {
     collection, document
@@ -16,7 +17,7 @@ export type Reference = {
 export class DatabaseService {
     private references: Reference[] = []
 
-    async setupDocument(path: string, documentObject: any) {
+    async setupDocument(path: string, documentObject: any): Promise<void> {
         const reference = this.findReference(path)
 
         if(reference.type == ReferenceType.collection) {
@@ -25,7 +26,7 @@ export class DatabaseService {
         await reference.documentRef!.set(documentObject, { merge: true })
     }
 
-    createDocument(path: string, document: string) {
+    createDocument(path: string, document: string): void {
         if(path === document) {
             this.insertReference(path, ReferenceType.document)
             return
@@ -35,13 +36,13 @@ export class DatabaseService {
 
         const documentReference = <Reference> {
             type: ReferenceType.document,
-            path: reference.path + "." + document,
+            path: buildInsertPath(reference.path, document),
             documentRef: reference.collectionRef!.doc(document)
         }
         this.references.push(documentReference)
     }
 
-    createCollection(path: string, collection: string) {
+    createCollection(path: string, collection: string): void {
         if(path === collection) {
             this.insertReference(path, ReferenceType.collection)
             return
@@ -51,7 +52,7 @@ export class DatabaseService {
 
         const collectionReference = <Reference> {
             type: ReferenceType.collection,
-            path: reference.path + "." + collection,
+            path:  buildInsertPath(reference.path, collection),
             collectionRef: reference.documentRef!.collection(collection)
         }
         this.references.push(collectionReference)
