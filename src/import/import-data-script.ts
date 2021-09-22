@@ -1,7 +1,7 @@
 import * as admin from "firebase-admin";
-import {DatabaseService} from "./import/database-service";
-import {ImportService} from "./import/import-service";
-import {readFile} from "./utils/function-utils";
+import {DatabaseService} from "./database-service";
+import {ImportService} from "./import-service";
+import {readFile} from "../utils/function-utils";
 
 export namespace ImportDataScript {
     export async function run() {

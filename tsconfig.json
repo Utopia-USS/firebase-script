@@ -2,16 +2,19 @@
   "compilerOptions": {
     "module": "commonjs",
     "noImplicitReturns": true,
-    "noUnusedLocals": false,
-    "outDir": "lib",
+    "outDir": "dist",
+    "rootDir": "src",
     "sourceMap": true,
     "strict": true,
     "target": "es2017",
     "esModuleInterop": true
   },
+  "lib": ["es2017"],
   "compileOnSave": true,
   "include": [
-    "src",
-    "test"
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
   ]
 }
