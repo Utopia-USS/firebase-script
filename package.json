@@ -1,0 +1,15 @@
+{
+  "name": "mp-firestore-json",
+  "version": "1.0.1",
+  "scripts": {
+    "build": "tsc src/*.ts --out dist/app.js --module system"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.10",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "firebase-admin": "^8.13.0",
+    "firebase-functions": "3.13.0"
+  }
+}

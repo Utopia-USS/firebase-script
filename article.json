@@ -1,0 +1,31 @@
+{
+  "article_items": [
+    {
+      "type": "title",
+      "value": "Elo, elo"
+    },
+    {
+      "type": "header",
+      "value": "Elo, elo"
+    },
+    {
+      "type": "description",
+      "value": "Opis, elo, elo"
+    },
+    {
+      "type": "image",
+      "value": {
+        "url": "image_url"
+      }
+    },
+    {
+      "type": "video",
+      "value": {
+        "url": "video_url_1",
+        "ratio": 1,
+        "lengthMs": 120,
+        "coverUrl": "cover_url"
+      }
+    }
+  ]
+}
